@@ -8,6 +8,7 @@ import (
 type ClienteRepository interface {
 	InsertCliente(ctx context.Context, cliente *models.Cliente) error
 	GetClienteById(ctx context.Context, id int64) (*models.Cliente, error)
+	Close() error
 }
 
 var implementation ClienteRepository
@@ -22,4 +23,8 @@ func InsertCliente(ctx context.Context, cliente *models.Cliente) error{
 
 func GetClienteById(ctx context.Context, id int64) (*models.Cliente,error){
 	return implementation.GetClienteById(ctx,id)
+}
+
+func Close() error{
+	return implementation.Close()
 }

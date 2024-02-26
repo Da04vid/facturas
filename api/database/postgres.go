@@ -1,0 +1,52 @@
+package database
+
+import (
+	"context"
+	"database/sql"
+	"facturas/models"
+	"log"
+	_"github.com/lib/pq"
+)
+
+type PostgresRepository struct {
+	db *sql.DB
+}
+
+func NewPostgresRepository(url string) (*PostgresRepository,error){
+	db, err := sql.Open("postgres",url)
+	if err != nil{
+		return nil, err
+	}
+	return &PostgresRepository{db},nil
+}
+
+func (repo *PostgresRepository) InsertCliente(ctx context.Context, cliente *models.Cliente) error{
+	_, err := repo.db.ExecContext(ctx,"INSERT INTO cliente (nombre,telefono,identificacion,correo) VALUES ($1,$2,$3,$4)",
+	cliente.Nombre,cliente.Telefono,cliente.Identificacion,cliente.Correo)
+	return err
+}
+
+func (repo *PostgresRepository) GetClienteById(ctx context.Context, id int64) (models.Cliente, error){
+	filas, err := repo.db.Query(ctx,"SELECT * FROM cliente WHERE id = $1",id)
+	
+	defer func(){
+		err = filas.Close()
+		if err != nil{
+			log.Fatal(err)
+		}
+	}()
+	var cliente = models.Cliente{}
+	for filas.Next(){
+		if err = filas.Scan(&cliente.Nombre, &cliente.Telefono, &cliente.Identificacion, &cliente.Correo); err ==  nil{
+			return &cliente,nil
+		}
+	}
+	if err = filas.Err();err != nil{
+		return nil,err
+	}
+	return &cliente,nil
+}
+
+func (repo *PostgresRepository) Close() error{
+	return repo.db.Close()
+}
