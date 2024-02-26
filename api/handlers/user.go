@@ -9,7 +9,10 @@ import (
 )
 
 type ClienteRequest struct {
-	Nombre string `json:"nombre"`
+	Nombre         string `json:"nombre"`
+	Telefono       string `json:"telefono"`
+	Identificacion string `json:"identificacion"`
+	Correo         string `json:"correo"`
 }
 
 type ClienteResponse struct {
@@ -29,6 +32,9 @@ func ClienteHandler(s server.Server) http.HandlerFunc{
 		}
 		var cliente = models.Cliente{
 			Nombre: request.Nombre,
+			Telefono: request.Telefono,
+			Correo: request.Correo,
+			Identificacion: request.Identificacion,
 		}
 		err = repository.InsertCliente(r.Context(),&cliente)
 		if err != nil{
