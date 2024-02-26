@@ -27,11 +27,6 @@ func ClienteHandler(s server.Server) http.HandlerFunc{
 			http.Error(w, err.Error(),http.StatusBadRequest)
 			return 
 		}
-		// _id, err := ksuid.NewRandom()
-		// if err != nil{
-		// 	http.Error(w, err.Error(),http.StatusInternalServerError)
-		// 	return
-		// }
 		var cliente = models.Cliente{
 			Nombre: request.Nombre,
 		}

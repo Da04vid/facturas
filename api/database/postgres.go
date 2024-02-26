@@ -26,8 +26,8 @@ func (repo *PostgresRepository) InsertCliente(ctx context.Context, cliente *mode
 	return err
 }
 
-func (repo *PostgresRepository) GetClienteById(ctx context.Context, id int64) (models.Cliente, error){
-	filas, err := repo.db.Query(ctx,"SELECT * FROM cliente WHERE id = $1",id)
+func (repo *PostgresRepository) GetClienteById(ctx context.Context, id int64) (*models.Cliente, error){
+	filas, err := repo.db.QueryContext(ctx,"SELECT * FROM cliente WHERE id = $1",id)
 	
 	defer func(){
 		err = filas.Close()
