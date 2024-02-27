@@ -37,4 +37,10 @@ func BinRoutes(s server.Server, r *mux.Router){
 	r.HandleFunc("/crearCliente",handlers.ClienteHandler(s)).Methods(http.MethodPost)
 	r.HandleFunc("/buscarCliente",handlers.GetIdentificacionHandler(s)).Methods(http.MethodPost)
 	r.HandleFunc("/mostrarClientes",handlers.GetClientesHandler(s)).Methods(http.MethodGet)
+	r.HandleFunc("/crearFactura",handlers.FacturaHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/buscarFactura",handlers.GetFacturaIdHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/mostrarFacturas",handlers.GetFacturasHandler(s)).Methods(http.MethodGet)
+	r.HandleFunc("/crearitem",handlers.ItemHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/buscaritem",handlers.GetItemIdHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/mostraritems",handlers.GetItemsHandler(s)).Methods(http.MethodGet)
 }
