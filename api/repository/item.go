@@ -7,7 +7,7 @@ import (
 
 type ItemRepository interface {
 	InsertItem(ctx context.Context, Item *models.Item) error
-	GetItemById(ctx context.Context, id string) (*models.Item, error)
+	GetItemById(ctx context.Context, id int64) (*models.Item, error)
 	GetItems(ctx context.Context) ([]*models.Item, error)
 }
 
@@ -21,7 +21,7 @@ func InsertItem(ctx context.Context, item *models.Item) error{
 	return implementationItem.InsertItem(ctx,item)
 }
 
-func GetItemById(ctx context.Context, id string) (*models.Item,error){
+func GetItemById(ctx context.Context, id int64) (*models.Item,error){
 	return implementationItem.GetItemById(ctx,id)
 }
 

@@ -7,7 +7,7 @@ import (
 
 type FacturaRepository interface {
 	InsertFactura(ctx context.Context, factura *models.Factura) error
-	GetFacturaById(ctx context.Context, id string) (*models.Factura, error)
+	GetFacturaById(ctx context.Context, id int64) (*models.Factura, error)
 	GetFacturas(ctx context.Context) ([]*models.Factura, error)
 }
 
@@ -21,7 +21,7 @@ func InsertFactura(ctx context.Context, factura *models.Factura) error{
 	return implementationFactura.InsertFactura(ctx,factura)
 }
 
-func GetFacturaById(ctx context.Context, id string) (*models.Factura,error){
+func GetFacturaById(ctx context.Context, id int64) (*models.Factura,error){
 	return implementationFactura.GetFacturaById(ctx,id)
 }
 

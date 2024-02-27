@@ -5,16 +5,16 @@ import (
 	"facturas/models"
 )
 
-type ClienteRepository interface {
+type Repository interface {
 	InsertCliente(ctx context.Context, cliente *models.Cliente) error
 	GetClienteByIdentificacion(ctx context.Context, identificacion string) (*models.Cliente, error)
 	GetClientes(ctx context.Context) ([]*models.Cliente, error)
 	Close() error
 }
 
-var implementation ClienteRepository
+var implementation Repository
 
-func SetRepositoryCliente(repository ClienteRepository){
+func SetRepository(repository Repository){
 	implementation = repository
 }
 
