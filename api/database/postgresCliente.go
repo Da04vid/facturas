@@ -12,21 +12,6 @@ type PostgresRepository struct {
 	db *sql.DB
 }
 
-// GetItemById implements repository.ItemRepository.
-func (*PostgresRepository) GetItemById(ctx context.Context, id string) (*models.Item, error) {
-	panic("unimplemented")
-}
-
-// GetItems implements repository.ItemRepository.
-func (*PostgresRepository) GetItems(ctx context.Context) ([]*models.Item, error) {
-	panic("unimplemented")
-}
-
-// InsertItem implements repository.ItemRepository.
-func (*PostgresRepository) InsertItem(ctx context.Context, Item *models.Item) error {
-	panic("unimplemented")
-}
-
 func NewPostgresRepository(url string) (*PostgresRepository, error) {
 	db, err := sql.Open("postgres", url)
 	if err != nil {
