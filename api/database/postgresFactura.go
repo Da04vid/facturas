@@ -7,14 +7,14 @@ import (
 	_"github.com/lib/pq"
 )
 
-func (repo *PostgresRepository) InsertFactura(ctx context.Context, cliente *models.Cliente) error{
-	_, err := repo.db.ExecContext(ctx,"INSERT INTO factura (nombre,telefono,identificacion,correo) VALUES ($1,$2,$3,$4)",
-	cliente.Nombre,cliente.Telefono,cliente.Identificacion,cliente.Correo)
+func (repo *PostgresRepository) InsertFactura(ctx context.Context, factura *models.Factura) error{
+	_, err := repo.db.ExecContext(ctx,"INSERT INTO factura (id_factura,fecha,descripcion,id_cliente) VALUES ($1,$2,$3,$4)",
+	factura.Id_factura,factura.Fecha,factura.Descripcion,factura.Id_cliente)
 	return err
 }
 
-func (repo *PostgresRepository) GetFacturaById(ctx context.Context, identificacion string) (*models.Cliente, error){
-	filas, err := repo.db.QueryContext(ctx,"SELECT nombre,telefono,identificacion,correo FROM factura WHERE id = $1",identificacion)
+func (repo *PostgresRepository) GetFacturaById(ctx context.Context, id string) (*models.Factura, error){
+	filas, err := repo.db.QueryContext(ctx,"SELECT id_factura,fecha,descripcion,id_cliente FROM factura WHERE id_factura = $1",id)
 	
 	defer func(){
 		err = filas.Close()
@@ -22,19 +22,19 @@ func (repo *PostgresRepository) GetFacturaById(ctx context.Context, identificaci
 			log.Fatal(err)
 		}
 	}()
-	var cliente = models.Cliente{}
+	var factura = models.Factura{}
 	for filas.Next(){
-		if err = filas.Scan(&cliente.Nombre, &cliente.Telefono, &cliente.Identificacion, &cliente.Correo); err ==  nil{
-			return &cliente,nil
+		if err = filas.Scan(&factura.Id_factura,&factura.Fecha,&factura.Descripcion,&factura.Id_cliente); err ==  nil{
+			return &factura,nil
 		}
 	}
 	if err = filas.Err();err != nil{
 		return nil,err
 	}
-	return &cliente,nil
+	return &factura,nil
 }
 
-func (repo *PostgresRepository) GetFacturas(ctx context.Context) ([]*models.Cliente, error){
+func (repo *PostgresRepository) GetFacturas(ctx context.Context) ([]*models.Factura, error){
 	filas, err := repo.db.QueryContext(ctx,"SELECT id_factura, descripcion FROM factura")
 	
 	defer func(){
@@ -43,17 +43,17 @@ func (repo *PostgresRepository) GetFacturas(ctx context.Context) ([]*models.Clie
 			log.Fatal(err)
 		}
 	}()
-	var clientes []*models.Cliente
+	var facturas []*models.Factura
 	for filas.Next() {
-		var cliente models.Cliente
-		if err := filas.Scan(&cliente.Nombre, &cliente.Telefono, &cliente.Identificacion, &cliente.Correo); err != nil {
+		var factura models.Factura
+		if err := filas.Scan(&factura.Id_factura,&factura.Fecha,&factura.Descripcion,&factura.Id_cliente); err != nil {
 			return nil, err
 		}
-		clientes = append(clientes, &cliente)
+		facturas = append(facturas, &factura)
 	}
 	if err := filas.Err(); err != nil {
 		return nil, err
 	}
 
-	return clientes, nil
+	return facturas, nil
 }

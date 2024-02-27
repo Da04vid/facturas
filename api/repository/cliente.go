@@ -14,7 +14,7 @@ type ClienteRepository interface {
 
 var implementation ClienteRepository
 
-func SetRepository(repository ClienteRepository){
+func SetRepositoryCliente(repository ClienteRepository){
 	implementation = repository
 }
 
@@ -33,3 +33,5 @@ func GetClientes(ctx context.Context) ([]*models.Cliente,error){
 func Close() error{
 	return implementation.Close()
 }
+
+
