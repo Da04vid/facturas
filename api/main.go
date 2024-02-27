@@ -40,7 +40,7 @@ func BinRoutes(s server.Server, r *mux.Router){
 	r.HandleFunc("/crearFactura",handlers.FacturaHandler(s)).Methods(http.MethodPost)
 	r.HandleFunc("/buscarFactura",handlers.GetFacturaIdHandler(s)).Methods(http.MethodPost)
 	r.HandleFunc("/mostrarFacturas",handlers.GetFacturasHandler(s)).Methods(http.MethodGet)
-	r.HandleFunc("/crearitem",handlers.ItemHandler(s)).Methods(http.MethodPost)
-	r.HandleFunc("/buscaritem",handlers.GetItemIdHandler(s)).Methods(http.MethodPost)
-	r.HandleFunc("/mostraritems",handlers.GetItemsHandler(s)).Methods(http.MethodGet)
+	r.HandleFunc("/crearItem",handlers.ItemHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/buscarItem",handlers.GetItemIdHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/mostrarItems",handlers.GetItemsHandler(s)).Methods(http.MethodGet)
 }
