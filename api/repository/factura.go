@@ -28,3 +28,5 @@ func GetFacturaById(ctx context.Context, id string) (*models.Factura,error){
 func GetFacturas(ctx context.Context) ([]*models.Factura,error){
 	return implementationFactura.GetFacturas(ctx)
 }
+
+
