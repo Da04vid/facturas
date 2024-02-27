@@ -5,17 +5,18 @@ import (
 	"facturas/models"
 )
 
-type ItemRepository interface {
+type RepositoryItem interface {
 	InsertItem(ctx context.Context, Item *models.Item) error
 	GetItemById(ctx context.Context, id int64) (*models.Item, error)
 	GetItems(ctx context.Context) ([]*models.Item, error)
 }
 
-var implementationItem ItemRepository
+var implementationItem RepositoryItem
 
-func SetRepositoryItem(repository ItemRepository){
+func SetRepositoryItem(repository RepositoryItem){
 	implementationItem = repository
 }
+
 
 func InsertItem(ctx context.Context, item *models.Item) error{
 	return implementationItem.InsertItem(ctx,item)
@@ -28,4 +29,8 @@ func GetItemById(ctx context.Context, id int64) (*models.Item,error){
 func GetItems(ctx context.Context) ([]*models.Item,error){
 	return implementationItem.GetItems(ctx)
 }
+
+
+
+
 

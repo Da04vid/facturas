@@ -3,8 +3,8 @@ package database
 import (
 	"context"
 	"facturas/models"
+	_ "github.com/lib/pq"
 	"log"
-	_"github.com/lib/pq"
 )
 
 func (repo *PostgresRepository) InsertItem(ctx context.Context, item *models.Item) error{
@@ -13,7 +13,7 @@ func (repo *PostgresRepository) InsertItem(ctx context.Context, item *models.Ite
 	return err
 }
 
-func (repo *PostgresRepository) GetItemById(ctx context.Context, id string) (*models.Item, error){
+func (repo *PostgresRepository) GetItemById(ctx context.Context, id int64) (*models.Item, error){
 	filas, err := repo.db.QueryContext(ctx,"SELECT id_item,nombre,descripcion,valor FROM item WHERE id_item = $1",id)
 	
 	defer func(){

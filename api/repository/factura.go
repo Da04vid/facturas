@@ -5,15 +5,15 @@ import (
 	"facturas/models"
 )
 
-type FacturaRepository interface {
+type RepositoryFactura interface {
 	InsertFactura(ctx context.Context, factura *models.Factura) error
 	GetFacturaById(ctx context.Context, id int64) (*models.Factura, error)
 	GetFacturas(ctx context.Context) ([]*models.Factura, error)
 }
 
-var implementationFactura FacturaRepository
+var implementationFactura RepositoryFactura
 
-func SetRepositoryFactura(repository FacturaRepository){
+func SetRepositoryFactura(repository RepositoryFactura){
 	implementationFactura = repository
 }
 

@@ -3,9 +3,10 @@ package database
 import (
 	"context"
 	"facturas/models"
+	_ "github.com/lib/pq"
 	"log"
-	_"github.com/lib/pq"
 )
+
 
 func (repo *PostgresRepository) InsertFactura(ctx context.Context, factura *models.Factura) error{
 	_, err := repo.db.ExecContext(ctx,"INSERT INTO factura (id_factura,fecha,descripcion,id_cliente) VALUES ($1,$2,$3,$4)",
@@ -13,7 +14,7 @@ func (repo *PostgresRepository) InsertFactura(ctx context.Context, factura *mode
 	return err
 }
 
-func (repo *PostgresRepository) GetFacturaById(ctx context.Context, id string) (*models.Factura, error){
+func (repo *PostgresRepository) GetFacturaById(ctx context.Context, id int64) (*models.Factura, error){
 	filas, err := repo.db.QueryContext(ctx,"SELECT id_factura,fecha,descripcion,id_cliente FROM factura WHERE id_factura = $1",id)
 	
 	defer func(){
