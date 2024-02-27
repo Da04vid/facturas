@@ -26,8 +26,8 @@ func (repo *PostgresRepository) InsertCliente(ctx context.Context, cliente *mode
 	return err
 }
 
-func (repo *PostgresRepository) GetClienteById(ctx context.Context, id int64) (*models.Cliente, error){
-	filas, err := repo.db.QueryContext(ctx,"SELECT * FROM cliente WHERE id = $1",id)
+func (repo *PostgresRepository) GetClienteByIdentificacion(ctx context.Context, identificacion string) (*models.Cliente, error){
+	filas, err := repo.db.QueryContext(ctx,"SELECT nombre,telefono,identificacion,correo FROM cliente WHERE identificacion = $1",identificacion)
 	
 	defer func(){
 		err = filas.Close()
@@ -45,6 +45,30 @@ func (repo *PostgresRepository) GetClienteById(ctx context.Context, id int64) (*
 		return nil,err
 	}
 	return &cliente,nil
+}
+
+func (repo *PostgresRepository) GetClientes(ctx context.Context) ([]*models.Cliente, error){
+	filas, err := repo.db.QueryContext(ctx,"SELECT nombre,telefono,identificacion,correo FROM cliente")
+	
+	defer func(){
+		err = filas.Close()
+		if err != nil{
+			log.Fatal(err)
+		}
+	}()
+	var clientes []*models.Cliente
+	for filas.Next() {
+		var cliente models.Cliente
+		if err := filas.Scan(&cliente.Nombre, &cliente.Telefono, &cliente.Identificacion, &cliente.Correo); err != nil {
+			return nil, err
+		}
+		clientes = append(clientes, &cliente)
+	}
+	if err := filas.Err(); err != nil {
+		return nil, err
+	}
+
+	return clientes, nil
 }
 
 func (repo *PostgresRepository) Close() error{

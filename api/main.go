@@ -34,5 +34,7 @@ func main() {
 
 func BinRoutes(s server.Server, r *mux.Router){
 	r.HandleFunc("/",handlers.HomeHandler(s)).Methods(http.MethodGet)
-	r.HandleFunc("/cliente",handlers.ClienteHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/crearCliente",handlers.ClienteHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/buscarCliente",handlers.GetIdentificacionHandler(s)).Methods(http.MethodPost)
+	r.HandleFunc("/mostrarClientes",handlers.GetClientesHandler(s)).Methods(http.MethodGet)
 }
