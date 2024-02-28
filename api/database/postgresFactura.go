@@ -9,8 +9,8 @@ import (
 
 
 func (repo *PostgresRepository) InsertFactura(ctx context.Context, factura *models.Factura) error{
-	_, err := repo.db.ExecContext(ctx,"INSERT INTO factura (id_factura,fecha,descripcion,id_cliente) VALUES ($1,$2,$3,$4)",
-	factura.Id_factura,factura.Fecha,factura.Descripcion,factura.Id_cliente)
+	_, err := repo.db.ExecContext(ctx,"INSERT INTO factura (fecha,descripcion,id_cliente) VALUES (TO_DATE($1, 'YYYY-MM-DD'),$2,$3)",
+	factura.Fecha,factura.Descripcion,factura.Id_cliente)
 	return err
 }
 
@@ -36,7 +36,7 @@ func (repo *PostgresRepository) GetFacturaById(ctx context.Context, id int64) (*
 }
 
 func (repo *PostgresRepository) GetFacturas(ctx context.Context) ([]*models.Factura, error){
-	filas, err := repo.db.QueryContext(ctx,"SELECT id_factura, descripcion FROM factura")
+	filas, err := repo.db.QueryContext(ctx,"SELECT id_factura,fecha, descripcion,id_cliente FROM factura")
 	
 	defer func(){
 		err = filas.Close()

@@ -11,7 +11,7 @@ import (
 type FacturasRequest struct {
 	Fecha         string `json:"fecha"`
 	Descripcion       string `json:"descripcion"`
-	Id_cliente string `json:"id_cliente"`
+	Id_cliente int64 `json:"id_cliente"`
 }
 
 type BuscarFacturaRequest struct {
@@ -21,7 +21,7 @@ type BuscarFacturaRequest struct {
 type FacturaResponse struct {
 	Fecha         string `json:"fecha"`
 	Descripcion       string `json:"descripcion"`
-	Id_cliente string `json:"id_cliente"`
+	Id_cliente int64 `json:"id_cliente"`
 }
 
 func FacturaHandler(s server.Server) http.HandlerFunc{
