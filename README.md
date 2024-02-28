@@ -26,6 +26,14 @@
     <p><strong>Get All para Facturas:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png"></a></p>
     <p><strong>POST busqueda por id de la Factura:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarFacturaPorId.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarFacturaPorId.png"></a></p>
     <p><strong>POST crear Factura:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearFactura.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearFactura.png"></a></p>
+<br>
+<h2>Pruebas de Funcionamiento de Docker</h2>
+  <h4>Servicio de docker</h4>
+<p><strong>Servicio de la imagen de postgres en docker encendido:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Docker/Servicio-de-la-imagen-en-docker.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Docker/Servicio-de-la-imagen-en-docker.png"></a></p>
+<br>
+ <h4>Postgres en funcionamiento</h4>
+<p><strong>Conexión a la base de datos montada en docker:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Docker/BD-en-pgAdmin.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Docker/BD-en-pgAdmin.png"></a></p>
+<p><strong>Consulta simple:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Docker/consulta-simple.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Docker/consulta-simple.png"></a></p>
 
 </body>
 </html>
