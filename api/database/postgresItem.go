@@ -8,8 +8,8 @@ import (
 )
 
 func (repo *PostgresRepository) InsertItem(ctx context.Context, item *models.Item) error{
-	_, err := repo.db.ExecContext(ctx,"INSERT INTO item (id_item,nombre,descripcion,valor) VALUES ($1,$2,$3,$4)",
-	item.Id_item,item.Nombre,item.Descripcion,item.Valor)
+	_, err := repo.db.ExecContext(ctx,"INSERT INTO item (nombre,descripcion,valor) VALUES ($1,$2,$3)",
+	item.Nombre,item.Descripcion,item.Valor)
 	return err
 }
 
