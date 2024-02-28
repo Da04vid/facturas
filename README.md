@@ -3,11 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    h4 {
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
 
@@ -23,9 +18,14 @@
     <p><strong>POST crear clientes:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearCliente.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearCliente.png"></a></p>
     <br>
     <h4>Item</h4>
-    <p><strong>Get All para Items:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png"></a></p>
+    <p><strong>Get All para Items:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllFacturas.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllFacturas.png"></a></p>
     <p><strong>POST busqueda por id del Item:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarItemPorId.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarItemPorId.png"></a></p>
     <p><strong>POST crear Item:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearItem.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearItem.png"></a></p>
+    <br>
+    <h4>Factura</h4>
+    <p><strong>Get All para Facturas:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/GetAllItems.png"></a></p>
+    <p><strong>POST busqueda por id de la Factura:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarFacturaPorId.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostBuscarFacturaPorId.png"></a></p>
+    <p><strong>POST crear Factura:</strong> <a href="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearFactura.png" target="_blank"><img src="https://github.com/Da04vid/facturas/blob/main/access/Endoints/PostCrearFactura.png"></a></p>
 
 </body>
 </html>
